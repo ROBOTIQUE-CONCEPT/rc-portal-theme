@@ -64,7 +64,7 @@
           wpautop: true,
           toolbar1: 'bold,italic,bullist,numlist,link,unlink,undo,redo',
         },
-        quicktags: true,
+        quicktags: false,
         mediaButtons: false,
       });
     }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-alpha9
+- Add `.rc-erp-columns`/`.rc-erp-column`, a 3-column layout (stacked below tablet width) for a read-only data card presenting grouped fields — first consumed by the `products` module's Axonaut card (RC Portal 0.3.0-alpha11).
+- Add `.rc-dashboard-actions`, a right-aligned single-action row for a page whose primary heading was removed.
+- Lazy WYSIWYG initialization (`assets/js/portal.js`) no longer enables quicktags, matching the eager-tab editor's own config — both stay pure visual editors, no Texte/Visuel toggle.
+
 ## 0.1.0-alpha8
 - Make `.rc-topbar` sticky (`position: sticky; top: 0`) so it stays visible on vertical scroll instead of scrolling away with the page content.
 - Add generic tabs primitives (`.rc-tabs__nav`/`.rc-tab`/`.rc-tabpanel`, driven by `data-rc-tabs`/`data-rc-tab`/`data-rc-tabpanel` in `assets/js/portal.js`) and a generic typology/variant field-toggle primitive (`.rc-family-fields[hidden]`, driven by `data-rc-family-toggle`/`data-rc-family-fields`) — both module-agnostic, first consumed by the `products` module's fiche page (RC Portal 0.3.0-alpha10) but usable by any module presenting per-variant panels.

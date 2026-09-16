@@ -9,7 +9,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-define('RC_PORTAL_THEME_VERSION', '0.1.0-alpha8');
+define('RC_PORTAL_THEME_VERSION', '0.1.0-alpha9');
 define('RC_PORTAL_THEME_UI_API_VERSION', 1);
 define('RC_PORTAL_THEME_DIR', __DIR__ . '/');
 define('RC_PORTAL_THEME_URL', get_stylesheet_directory_uri() . '/');

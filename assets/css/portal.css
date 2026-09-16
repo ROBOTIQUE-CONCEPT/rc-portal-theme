@@ -366,9 +366,18 @@ button, input, select, textarea { font: inherit; }
 .rc-card__header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 
 /* Grouped Axonaut fields (ProductsPages::renderErpCard). */
-.rc-erp-group { margin-bottom: 18px; }
-.rc-erp-group:last-of-type { margin-bottom: 0; }
-.rc-erp-group > .rc-eyebrow { display: block; margin-bottom: 10px; }
+/* Axonaut card: identité / tarification / stock side by side, stacked below
+   tablet width (ProductsPages::renderErpCard). */
+.rc-erp-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.rc-erp-column > .rc-eyebrow { display: block; margin-bottom: 10px; }
+.rc-erp-column .rc-field { margin: 0 0 12px; }
+.rc-erp-column .rc-field:last-child { margin-bottom: 0; }
+@media (max-width: 768px) {
+    .rc-erp-columns { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* Dashboard: right-aligned action row above the filter toolbar. */
+.rc-dashboard-actions { display: flex; justify-content: flex-end; margin-bottom: 18px; }
 .rc-card--stat strong { display: block; font-size: 28px; letter-spacing: -.03em; }
 .rc-card--stat span { color: var(--rc-muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
 
