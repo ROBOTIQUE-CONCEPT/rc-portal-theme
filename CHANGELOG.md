@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0-alpha8
+- Make `.rc-topbar` sticky (`position: sticky; top: 0`) so it stays visible on vertical scroll instead of scrolling away with the page content.
+- Add generic tabs primitives (`.rc-tabs__nav`/`.rc-tab`/`.rc-tabpanel`, driven by `data-rc-tabs`/`data-rc-tab`/`data-rc-tabpanel` in `assets/js/portal.js`) and a generic typology/variant field-toggle primitive (`.rc-family-fields[hidden]`, driven by `data-rc-family-toggle`/`data-rc-family-fields`) — both module-agnostic, first consumed by the `products` module's fiche page (RC Portal 0.3.0-alpha10) but usable by any module presenting per-variant panels.
+- Add `.rc-list-toolbar-actions` (a compact count + action row, for a list page that no longer needs a full page-header block) and `.rc-pagination`.
+- Add `.rc-erp-description`/`.rc-erp-description__body` for a read-only rich-text block rendered below a field grid, and `.rc-erp-group`/`.rc-card__header-actions` for grouping a card's fields and header badges.
+- `assets/js/portal.js` is now three independent IIFEs instead of one: the existing mobile-nav toggle no longer gates the new tabs/family-toggle behavior from initializing when no mobile-nav toggle element is present on the page.
+
 ## 0.1.0-alpha7
 - Add generic module-content primitives, additive only, for modules presenting lists as tables and fiches as cards/sections: `.rc-toolbar` (filter/search bar), `.rc-table-wrap`/`.rc-table`, `.rc-badge` (+ `--accent`/`--success`/`--muted`), `.rc-card-grid`/`.rc-card`/`.rc-card__header` (+ `.rc-card--stat` for a dashboard stat tile), `.rc-field-grid`/`.rc-field` (+ `.rc-field--help`).
 - Add `.rc-portal-alert--success`, alongside the existing `--error`, for a positive inline confirmation banner.

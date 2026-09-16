@@ -202,6 +202,9 @@ button, input, select, textarea { font: inherit; }
 
 .rc-workspace { min-width: 0; min-height: 100vh; }
 .rc-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     min-height: 72px;
     display: flex;
     align-items: center;
@@ -358,8 +361,14 @@ button, input, select, textarea { font: inherit; }
 
 .rc-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 22px; }
 .rc-card { border: 1px solid var(--rc-line); border-radius: var(--rc-radius); background: var(--rc-panel); box-shadow: var(--rc-shadow-sm); padding: 20px; }
-.rc-card__header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.rc-card__header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
 .rc-card__header h3 { margin: 0; font-size: 15px; letter-spacing: -.01em; }
+.rc-card__header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* Grouped Axonaut fields (ProductsPages::renderErpCard). */
+.rc-erp-group { margin-bottom: 18px; }
+.rc-erp-group:last-of-type { margin-bottom: 0; }
+.rc-erp-group > .rc-eyebrow { display: block; margin-bottom: 10px; }
 .rc-card--stat strong { display: block; font-size: 28px; letter-spacing: -.03em; }
 .rc-card--stat span { color: var(--rc-muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
 
@@ -377,3 +386,66 @@ button, input, select, textarea { font: inherit; }
 }
 .rc-field textarea { min-height: 90px; resize: vertical; }
 .rc-field--help { color: var(--rc-muted); font-size: 12px; margin-top: -4px; }
+
+/* Family list page: post-title actions row (replaces the old duplicate
+   "Typologie" / family-name page header — see ProductsPages::renderFamilyList). */
+.rc-list-toolbar-actions { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 18px; }
+
+/* Dashboard table pagination (ProductsPages::paginationLinks). */
+.rc-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 16px; }
+.rc-pagination a, .rc-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid var(--rc-line);
+    border-radius: var(--rc-radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rc-text-soft);
+    text-decoration: none;
+}
+.rc-pagination a:hover { background: var(--rc-bg-soft); }
+.rc-pagination .rc-pagination__current { background: var(--rc-accent); border-color: var(--rc-accent); color: #fff; }
+.rc-pagination .rc-pagination__ellipsis { border: 0; color: var(--rc-muted); }
+
+/* Generic tabs component (data-rc-tabs / data-rc-tab / data-rc-tabpanel) —
+   used for the fiche's per-language projection panels, but deliberately
+   module-agnostic; see assets/js/portal.js. */
+.rc-tabs__nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--rc-line); margin-bottom: 16px; }
+.rc-tab {
+    appearance: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background: transparent;
+    padding: 9px 14px;
+    border-radius: var(--rc-radius-sm) var(--rc-radius-sm) 0 0;
+    color: var(--rc-muted);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transform: translateY(1px);
+}
+.rc-tab:hover { color: var(--rc-text); }
+.rc-tab[aria-selected="true"] {
+    color: var(--rc-accent);
+    background: var(--rc-panel);
+    border-color: var(--rc-line);
+    border-bottom-color: var(--rc-panel);
+}
+.rc-tabpanel[hidden] { display: none; }
+
+/* Typology-dependent fiche fields: every variant is rendered server-side,
+   JS toggles `hidden` on Typologie change (ProductsPages::renderFamilyFields). */
+.rc-family-fields[hidden] { display: none; }
+
+/* Read-only Axonaut description block (rendered separately from the
+   compact field grid — see ProductsPages::renderErpCard). */
+.rc-erp-description { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rc-line); }
+.rc-erp-description > span { display: block; color: var(--rc-text-soft); font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+.rc-erp-description__body { font-size: 13px; line-height: 1.6; color: var(--rc-text); }
+.rc-erp-description__body ul, .rc-erp-description__body ol { margin: 0 0 10px; padding-left: 20px; }
+.rc-erp-description__body p { margin: 0 0 10px; }
+.rc-erp-description__body p:last-child { margin-bottom: 0; }
