@@ -1,0 +1,43 @@
+# Changelog
+
+## 0.1.0-alpha7
+- Add generic module-content primitives, additive only, for modules presenting lists as tables and fiches as cards/sections: `.rc-toolbar` (filter/search bar), `.rc-table-wrap`/`.rc-table`, `.rc-badge` (+ `--accent`/`--success`/`--muted`), `.rc-card-grid`/`.rc-card`/`.rc-card__header` (+ `.rc-card--stat` for a dashboard stat tile), `.rc-field-grid`/`.rc-field` (+ `.rc-field--help`).
+- Add `.rc-portal-alert--success`, alongside the existing `--error`, for a positive inline confirmation banner.
+- No template or PHP change: existing `.rc-module-grid`/`.rc-module-card` dashboard-card styles were already generic and reusable as-is by a module's own dashboard.
+
+## 0.1.0-alpha6
+- The topbar breadcrumb now links every ancestor of the current page ("Accueil" and, when applicable, the current module) instead of showing them as plain text; only the current page stays unlinked. The module level is omitted when the module's own root page is the current page, so it doesn't repeat the final crumb.
+- Remove the now-unused `.rc-breadcrumb` styles (the per-page breadcrumb they served was removed in 0.1.0-alpha5).
+
+## 0.1.0-alpha5
+- Never show the WordPress admin bar on Portal routes, regardless of the connected user's role, via a `show_admin_bar` filter scoped to Portal requests.
+- Remove the per-page breadcrumb from the module/UI-page headers; the single breadcrumb in the topbar is now the only one (it was effectively duplicated between the topbar and each page header).
+- Remove the user card and action links from the bottom of the sidebar (duplicated the topbar identity); "Se déconnecter" (and the super-admin "Administration" link) move to the topbar, next to the current user.
+- Sidebar subtitle and topbar identity label now reflect the connected user's persona ("Espace interne" / "Espace client" / "Espace partenaire" and "Utilisateur interne" / "Utilisateur client" / "Utilisateur partenaire") via RC Portal's `CoreBridge::personaKey()`, instead of a static "Plateforme métier" / "Utilisateur connecté".
+- Sidebar navigation and the dashboard module grid now both consume `PortalRouter::visibleModuleNavigation()`: a module is only listed when the current user can actually reach it (its own page or at least one of its child pages), instead of every logged-in user seeing every module regardless of the configured permissions.
+
+## 0.1.0-alpha4
+- Add `templates/portal/parts/page.php`, rendering a page resolved through RC Core's UI Registry (a module dashboard or one of its declared child pages) with the same header/layout as the existing module placeholder.
+- Sidebar navigation now renders each module's declared child pages (via `PortalRouter::navigationChildren()`) under its own entry, grouped in a new `.rc-nav-group`/`.rc-nav-children` structure, with `.rc-nav-item--child` styling for the nested links.
+- No new business logic in the theme: navigation grouping and page rendering both consume data RC Portal already resolved; the theme only lays it out.
+
+## 0.1.0-alpha3
+- Restore the richer RC login wall and welcome dashboard visual language in the theme.
+- Make all user-facing Portal copy French-first.
+- Consume WordPress Global Styles variables for Portal colors and typography.
+- Add direct module navigation support for `/maintenance/`, `/products/`, `/inventory/` and `/leads/`.
+- Add responsive application-shell navigation without moving business logic into the theme.
+
+## 0.1.0-alpha2
+
+- Add the dedicated private Portal login UI for the `/login/` runtime route.
+- Add installable PWA metadata, manifest, service worker registration and 192/512 icons.
+- Cache only static theme assets in the service worker.
+- Keep authenticated HTML, REST APIs, documents and business data network-only.
+- Add a neutral offline navigation fallback containing no business data.
+- Keep all authentication/authorization decisions inside RC Portal; the theme remains presentation-only.
+
+## 0.1.0-alpha1
+
+- Initial dedicated Portal presentation theme.
+- Child theme of Twenty Twenty-Five.
