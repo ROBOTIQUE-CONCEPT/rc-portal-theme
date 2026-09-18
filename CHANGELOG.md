@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-alpha10
+- `templates/portal/parts/page.php` no longer renders its own generic `<header class="rc-page-header"><h1>{label}</h1></header>` — every module page routed through it already renders its own, real `.rc-page-header` (now itself a `<header>` element, not a `div`), so the two no longer stack as a duplicated title. Affects every module using this template (Products, Tools).
+- Add `.rc-module-grid--square`, an additive modifier a module's own dashboard can opt into for square sub-tool cards (`aspect-ratio: 1`) — first consumed by the `tools` module's dashboard (RC Portal 0.3.0-alpha13); the default `.rc-module-grid` (Portal home, Products dashboard) is unchanged.
+
 ## 0.1.0-alpha9
 - Add `.rc-erp-columns`/`.rc-erp-column`, a 3-column layout (stacked below tablet width) for a read-only data card presenting grouped fields — first consumed by the `products` module's Axonaut card (RC Portal 0.3.0-alpha11).
 - Add `.rc-dashboard-actions`, a right-aligned single-action row for a page whose primary heading was removed.

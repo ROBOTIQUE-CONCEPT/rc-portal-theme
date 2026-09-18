@@ -285,6 +285,11 @@ button, input, select, textarea { font: inherit; }
 .rc-module-card__body strong { font-size: 20px; letter-spacing: -.025em; }
 .rc-module-card__body p { margin: 0; color: var(--rc-muted); font-size: 13px; line-height: 1.55; }
 .rc-module-card__footer { margin-top: auto; padding-top: 20px; color: var(--rc-muted); font-size: 11px; font-weight: 700; }
+/* Square variant: a module that wants its own sub-tools listed as square
+   cards (e.g. the `tools` module's own dashboard) opts in with this
+   modifier on the grid — the default `.rc-module-grid` (Portal home,
+   Products dashboard, …) is unaffected. */
+.rc-module-grid--square .rc-module-card { min-height: 0; aspect-ratio: 1 / 1; }
 
 /* Module/error surfaces */
 .rc-page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 22px; }
