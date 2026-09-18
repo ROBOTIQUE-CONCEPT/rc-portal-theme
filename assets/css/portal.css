@@ -288,7 +288,13 @@ button, input, select, textarea { font: inherit; }
 /* Square variant: a module that wants its own sub-tools listed as square
    cards (e.g. the `tools` module's own dashboard) opts in with this
    modifier on the grid — the default `.rc-module-grid` (Portal home,
-   Products dashboard, …) is unaffected. */
+   Products dashboard, …) is unaffected. The column track is a fixed size
+   here (not `1fr`, unlike the default grid): with `1fr` a single card —
+   the common case for a module's first tool — would stretch to fill the
+   whole row instead of matching the size of cards elsewhere on the site.
+   `auto-fill` still wraps additional cards onto new rows as more tools
+   are added, without growing any one card. */
+.rc-module-grid--square { grid-template-columns: repeat(auto-fill, minmax(240px, 240px)); }
 .rc-module-grid--square .rc-module-card { min-height: 0; aspect-ratio: 1 / 1; }
 
 /* Module/error surfaces */

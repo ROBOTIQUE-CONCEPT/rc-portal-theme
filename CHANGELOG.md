@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.0-alpha11
+- Fix `.rc-module-grid--square` (added in 0.1.0-alpha10): the grid's column track was still `1fr`, so a single card — the common case, e.g. the `tools` dashboard with one tool so far — stretched to fill the whole row instead of a square the size of cards elsewhere. The modifier now also fixes the column track to `minmax(240px, 240px)`, matching the visual size of a regular `.rc-module-card`; `auto-fill` still wraps further cards onto new rows as more tools are added.
+
 ## 0.1.0-alpha10
 - `templates/portal/parts/page.php` no longer renders its own generic `<header class="rc-page-header"><h1>{label}</h1></header>` — every module page routed through it already renders its own, real `.rc-page-header` (now itself a `<header>` element, not a `div`), so the two no longer stack as a duplicated title. Affects every module using this template (Products, Tools).
 - Add `.rc-module-grid--square`, an additive modifier a module's own dashboard can opt into for square sub-tool cards (`aspect-ratio: 1`) — first consumed by the `tools` module's dashboard (RC Portal 0.3.0-alpha13); the default `.rc-module-grid` (Portal home, Products dashboard) is unchanged.
