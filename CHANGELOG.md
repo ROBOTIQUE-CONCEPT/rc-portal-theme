@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.0-alpha12
+- `.rc-toolbar`'s styled-input selector now also covers `input[type="date"]` and `input[type="datetime-local"]` (previously only `select`, `input[type="text"]`, `input[type="search"]`) — needed by the KUKA archive analyzer's new merged message-log table (RC Portal 0.3.0-alpha17), whose date/time range filter uses `datetime-local` inputs inside a `.rc-toolbar`.
+
 ## 0.1.0-alpha11
 - Fix `.rc-module-grid--square` (added in 0.1.0-alpha10): the grid's column track was still `1fr`, so a single card — the common case, e.g. the `tools` dashboard with one tool so far — stretched to fill the whole row instead of a square the size of cards elsewhere. The modifier now also fixes the column track to `minmax(240px, 240px)`, matching the visual size of a regular `.rc-module-card`; `auto-fill` still wraps further cards onto new rows as more tools are added.
 
