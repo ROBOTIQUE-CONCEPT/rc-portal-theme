@@ -48,12 +48,17 @@ it as a small, separate, low-risk fix.
   `templates/portal/modules/{module-id}.php` override point.
 - `templates/portal/parts/page.php` does `echo $context->pageHtml;` —
   raw, unescaped output of HTML a module produced through RC Core's UI
-  Registry render contract. This is a deliberate, documented trust
-  boundary (the theme "only frames" a module's own already-rendered
-  content) — not a bug, and not something to wrap in `esc_html()` (that
-  would break every module page by literal-encoding its markup). See
-  `rc-core/docs/ARCHITECTURE-OPEN-QUESTIONS.md` #2 for the open question
-  about whether this stays the permanent model.
+  Registry render contract. This is today's real, working trust boundary
+  (the theme "only frames" a module's own already-rendered content) — not
+  a bug, and not something to wrap in `esc_html()` right now (that would
+  break every module page by literal-encoding its markup). It is **not**,
+  however, the permanent model: **decided 2026-09-19, no exception**, the
+  target is RC Core's declarative `PageDefinition`/`TableDefinition` data
+  contract (`rc-core/docs/PORTAL-UI.md`), with the theme (via Portal) doing
+  all rendering and no module ever handing the theme a pre-built HTML
+  string. `pageHtml` is migration debt to retire, not a pattern to
+  reinforce — don't add a second module-owned trust boundary like it while
+  this migration is pending.
 
 ## Repository map
 
@@ -202,4 +207,4 @@ it as a small, separate, low-risk fix.
 | The app shell / a template part | `templates/portal.php` and the relevant `templates/portal/parts/*.php` — note the one unescaped `pageHtml` exception |
 | PWA / service worker | `inc/PortalTheme.php::serveServiceWorker()` directly — re-verify caching scope by hand, preflight doesn't fully cover it |
 | UI API version compatibility | This file's Architecture boundaries section, then `rc-portal/AGENTS.md` |
-| Presentation-ownership questions (module-rendered HTML) | `rc-core/docs/ARCHITECTURE-OPEN-QUESTIONS.md` #2 |
+| Presentation ownership / `pageHtml` | Decided (2026-09-19, no exception) — `rc-core/docs/PORTAL-UI.md`'s implementation-status note and this file's Architecture boundaries section above, not the open-questions doc |
